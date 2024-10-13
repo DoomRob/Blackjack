@@ -27,23 +27,16 @@ def total(turn):
     total = 0
     face = ['Joker', 'Queen', 'King']
     for cards in turn:
-        if cards in range(1, 11):
-            total += cards
-        elif cards in face:
-            total += 10
-        else:
-            if total > 11:
-                total += 1
-            else:
-                total += 11
+        if cards in range(1, 11): total += cards
+        elif cards in face: total += 10
+        else: if total > 11: total += 1
+        else: total += 11
     return total
 
 # The Result of the game
 def showDealerCards():
-    if len(dealer_cards) == 2:
-        return dealer_cards[0]
-    elif len(dealer_cards) > 2:
-        return dealer_cards[0], dealer_cards[1]
+    if len(dealer_cards) == 2: return dealer_cards[0]
+    elif len(dealer_cards) > 2: return dealer_cards[0], dealer_cards[1]
 
 # The loop
 for _ in range(2):
@@ -56,20 +49,13 @@ print(player_cards)
 while playerIn or dealerIn:
     print(f"Dealer had {showDealerCards()} and X")
     print(f"You have {player_cards} for total of {total(player_cards)}")
-    if playerIn:
-        stayOrhit = input("1: Stay\n2: Hit\n")
-    if total(dealer_cards) > 16:
-        dealerIn = False
-    else:
-        dealing_cards(dealer_cards)
-    if stayOrhit == '1':
-        playerIn = False
-    else:
-        dealing_cards(player_cards)
-    if total(player_cards) >= 21:
-        break
-    elif total(dealer_cards) >= 21:
-        break
+    if playerIn: stayOrhit = input("1: Stay\n2: Hit\n")
+    if total(dealer_cards) > 16: dealerIn = False
+    else: dealing_cards(dealer_cards)
+    if stayOrhit == '1': playerIn = False
+    else: dealing_cards(player_cards)
+    if total(player_cards) >= 21: break
+    elif total(dealer_cards) >= 21: break
 
 # Conditions
 if total(player_cards) == 21:
